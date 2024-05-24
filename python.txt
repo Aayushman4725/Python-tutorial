@@ -1,0 +1,254 @@
+repl.it -- code editor for python
+
+#Variables in python
+age=20
+sentence="my name is aayushman"
+
+print(sentence)
+
+a,b,c=20,18,14
+# a holds the value 20, b stores the value 18 and so on
+
+a=b=c=4
+#every variables has the same value 4
+
+name,age="aayushman",20
+
+
+
+#Arithmetic operators and String
+
+age1=20
+age2=15
+
+print(age1+age2) #addition same for other operators
+
+#for string
+
+sent1="hello world"
+print(sent1)
+
+fname="aayushman"
+lname="amatya"
+
+print(fname+" "+lname)
+# the output will be aayushman amatya
+
+print("hi"*10)
+#prints hi 10 times
+
+sent="a is playing ball"
+print(sent[0])
+#prints the first character i.e a
+
+print(sent[0:3])
+
+#prints 3 characters which are a space and i 
+#the above two code is also called slicing
+
+#Place holders in Strings
+
+name="jake"
+sent"%s is 13 yrs old"
+
+print(sent % name)
+#output will be jake is 13 yrs old
+
+print(sent % ("aayushman"))
+#prints aayushman is 13 yrs old
+
+sent2="%s is %d yrs old"
+print(sent2 %("aayushman",20))
+#prints aayushman is 20 yrs old
+
+#format strings
+#f""
+
+name= "aayushman"
+print(f"Hello, {name}")
+
+x=10
+y=20
+
+print(f"The sum if x and y is {x+y}")
+#outputs The sum of x and y is 30
+
+
+
+#Day 2
+
+  #Introduction to List
+#Ordered items, have an index, know the order
+
+shopping_list=['apples','banana','oranges','cheese']
+#index 0=apples
+print(shopping_list)
+#prints in array format
+
+print(shopping list[0])
+#outputs apples
+
+print(shopping_list[0:3])
+#ignores cheese (slicing)
+
+shopping_list.append('blueberries')
+#places bluebarries at last
+
+shopping_list[0]='cherries'
+#replaces apples with cherries
+
+del shopping_list[1]
+#deletes item at index 1
+
+print(len(shopping_list))
+#prints the length of array
+
+shopping_list2=['bread','jam','butter']
+print(shopping_list+shopping_list2)
+#merges both list into one 
+
+print(shopping_list*2)
+#prints items twice
+
+list_num=[1,2,3,4,5]
+print(max(list_num))
+print(min(list_num))
+#prints the maximum and minimum value in the list
+
+#Introduction to dictionaries
+# similar to hashmap
+
+student={'bob':12,'rachel':13}
+print(student['bob'])
+#prints 12
+#here bob is the key
+#key in the dictionary should be unique
+
+student['rachel']=14
+#updates values from 13 to 14
+
+del student['rachel']
+#deletes rachel
+
+print(len(student))
+#prints the length of the dictionaries
+
+#Introduction to tuples
+#Tupples are immutable- they cant be modified
+
+tup =("oranges","apples","bananas")
+#these items cant be modified
+#similar to const in javascript
+#slicing can also be used in tuples based on previous examples
+#tuples can be concatinated using arithmetic operator "+"
+
+#Conditional Statements
+
+if 5>3
+   print("hello")
+else
+   print("not true")
+
+#indentation is important for conditional statements which is space after if in the second #line print("hello")
+
+age=16
+if age<=15
+	print("you are younger than 16")
+
+elif age==16
+	print("you are 16")
+
+else
+	print("age doesnt match")
+
+
+if age<13 and age==13
+	print("You are a child")
+
+else 
+	print("You are a teenager")
+
+#similarly "or" can also be used
+
+
+#Introduction to FOR loops
+
+list1=['apples','bananas','mango']
+tup=(2,3,4)
+
+for item in list1:
+	print(item)
+
+
+#prints each items in list1 in seperate lines
+
+
+for item in tup:
+	print(item)
+#same for tuples
+
+for i in range(0,10)
+	print(i)
+#prints number form 0 to 9 (range is a in-built function)
+
+for i in range(0,11,2): 
+	print(i)
+#here 2 is the increment factor which means the the every numbers are added by 2 until 10 #arrives
+#eg 
+0
+2
+4
+6
+8
+10
+#we can simply say that if the increment factor is 2 it gives even number depending in the #ranges used, if for example range (1 to 11) is used the range then the numbers..
+1
+3
+5
+7
+9
+# is printed
+
+
+
+
+for i in range(0,5):
+	for j in range(0,3):
+		print(i*j)
+#nested for loop
+		
+
+#While loops
+
+#keeps executing as long as the condition holds true
+c=0
+
+while c<5
+	c=c+1
+	print(c)
+
+#prints from 0 to 5 in seperate lines
+
+#3 control statements - break, continue, pass
+
+while c<5:
+	c=c+1
+	if c==3:
+		break
+	print(c)
+
+#prints upto 2
+while c<5:
+	c=c+1
+	if c==3:
+		continue
+	print(c)
+#prints 0 to 5 excluding 3
+
+
+
+
+
+
+
+
