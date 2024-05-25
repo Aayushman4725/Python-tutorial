@@ -246,9 +246,301 @@ while c<5:
 #prints 0 to 5 excluding 3
 
 
+#Try and Except
+#Useful in situations when exception may be raised
+
+try:
+	if name>3
+		print("HEllo")
+except:
+	print("An error was detected.")
+
+#show the the later message
+
+#funtions
+# a baker makes special bread
+#Series of steps: mix, knead, rise, bake
+
+def hello_world():
+	print("hello world")
+
+hello_world()
+
+
+def greeting(name):
+	print("Hi"+name+"!")
+
+greeting('Avi')
+
+#prints Hi Avi!
+
+def add(num1,num2)
+	print(num1+num2)
+
+add(12,13)
+#prints 25
+
+num_sum=add(10,23)
+print(num_sum)
+
+def mul(num1,num2):
+	return num1*num2
+
+print(mul(add(1,2),add(3,4))
+
+
+#Built-in funtions
+
+print(abs(-23))
+#prints positive
+
+print(bool(None))
+#prints false
+
+#dir
+print(dir("Hello"))
+#shows list of string methods
+
+#help
+sent="Hello"
+print(help(sent.upper)
+
+#describes upper method
+
+
+#eval
+sent= "print(hi)"
+eval(sent)
+#executes the code in sent
+
+#str, int, float
+print("hello"+str(100))
+
+#prints hello 100
+print(123+int("456"))
+#prints 529
+#similarly with float
+
+
+#OOP- Classes and Objects
+#class are just a blueprint
+#objects are the instances of a class
+#for example: we have a car, a car can have various features like color, model, release #dates and so on. if we have to initialize multiple cars with different features like one #car may have red color another may have blue so if we make blueprint of the car i.e class #we can easily make multiple copies of the car with different features i.e objects our job #will be much more simple
+
+class Person:
+	def __init__(self, name, age):  #initialization method to setup attribute
+		self.name-name
+		self.age=age
+	
+	def getName(self):
+		return self.name
+	
+	def getAge(self):
+		return self.age
+	
+
+p1=Person("BOB",22)
+print(p1) #prints both name and age
+
+print(p1.getAge())
+
+#only prints age 
+
+
+#Inheritance
+
+class Car:
+	def __init__(self):
+		self.seats=4
+		self.wheels=4
+	
+	def drive(self):
+		print("Driving a car.")
+
+	def getSeat(self):
+		return self.seats
+	
+	def getWheels(self):
+		return self.wheels
+
+		
+myCar= Car()
+myCar.drive()
+
+print(myCar.getSeat()) #prints 4
+
+class SportsCar(Car):
+	def __init__(self):
+		def super().__init__()		#inherits the attribute of Car class
+		self.enginePower=400
+		self.seats=2
+	
+	def drive(self):
+		print("Driving a sports car...")
+		
+
+sportsCar=SportsCar()
+
+sportsCar.drive()
+#prints the later message
+		
+#additional built in function
+#lower()= converts string to lower case
+#isupper()=returns true if the string is in uppercase
+
+sent="hello"
+print(sent.upper().isupper())
+
+print(len(sent))
+#prints the length of the string i.e the number of characters
+
+print(sent.index("h")
+#prints the index number of h i.e 0
+
+print(sent.replace("hello","World")
+#replaces hello with World
+
+
+# str()=changes the datatype into string
+# abs()= returns absolute value of the number i.e positive value
+# pow()=can take two parameters the first is the number and the second is power for eg: 3^2
+# max()=returns the largest number
+# min()=returns the smallest number
+# round()= round off the number for example for 4.6 it round offs to 5
+# sqrt()= returns square root of the number
+
+#import library
+from math import *  #needed for math functions such as pow, min, max etc
+
+
+#getting input from the user
+
+name = input("Enter your name: ")
+print("Hello" + name + "!")
+# prompts Enter your name: 
+# Enter the name for eg :aayush
+#prints Hello aayush !
+
+age= input("Enter your age:")
+print("Your are is:" + age)
+
+#int()= returns the whole numbers 
+#float()= returns decimal number
+
+# additional tip for list mentioned in above parts:
+friends=["A", "B", "C"]
+print(friends[-1]) # the negative index starts the print from end of the list 
+#the above code prints C
+
+#Built in functions for list
+
+# extend()= adds another list at  the end of list
+# for eg friends.extend(<any list>)
+#append()= adds item at the end of the list
+#insert()= adds item at any desired index, it takes two parameter the first is the index #where the item should be added and second is the item that was previously in that index. 
+#remove() = removes the items in the list, it takes one parameter which is the item to be #removed
+#clear()= empties out the list
+#pop()= pops an item out of the list that is removes the last element in the list
+#index()= takes one parameter which is the item name and returns the index of the item
+#count()= counts the number of same item
+#sort()= sorts the list in ascending order
+#reverse()= reverses the order of the list
+#copy()= copies another list
+
+friends2=friends.copy()
+
+#Attributes of tuples
+coordinates= [(4,5),(6,7)]
+#in the abouve code tuples are initiated inside a list
+
+#prompting a float number
+num=float(input("Enter a number:"))
+
+#method in dictionary
+#get()= it takes in two parameters one is the key and another is a message if the key is #not presint in the dictionary
+
+
+#Exponent function
+print(2**3)
+#the above code means 2^3
+
+def power(base_num,power_num):
+	result=1
+	
+	for index in range(pow_num):
+		result=result*base_num
+	return result
+print(power(3,2))
+
+#It prints 9
+
+#2D lists
+number_grid= [
+	[1,2,3],
+	[3,4,5],
+	[6,7,8],
+]
+
+print(number_grid[0][1])
+#the above code prints 2 as it is the index 1 of item in present in the index 0 of #number_grid 
+
+for row in number_grid
+	print(row)
+
+#prints the whole list i.e number_grid
+
+for row in number_grid
+	for col in row
+		print(col)
+
+#prints the individual digits in the grid
+
+# property of if 
+letter=""
+if letter.lower() in "aeiou"
+	print("It is vowel")
+
+#checks whether the letter is vowel or not
+
+#Reading files
+open("employee.txt","r")
+# the second parameter is a mode that allow us to do perform various function in the file
+#r- allows to read the file but not write in it
+#w- allows to write in the file
+#a- allows you to add new contents at the end of the file
+#r+ - allows both reading and writing
+
+employee_file=open("employee.txt", "r")
+
+print(employee_file.readable())
+#gives boolean info if the file is opened in read mode then it returns true else false
+
+print(employee_file.read())
+#prints all the info in the file
+
+print(employee_file.readline())
+#prints only one line
+print(employee_file.readline())
+#prints the second line
+
+print(employee_file.readlines())
+#takes each line and keeps it in a list and prints that list
+
+print(employee_file.readlines()[1])
+#prints the first line 
+
+for employee in employee_file.readlines():
+	print(employee)
+
+#prints every lines
+
+employee_file.close()
+#closes a file
 
 
 
+#Writing Files
 
-
-
+employee_files=open("employee.txt","a")
+employee_files.write("Tobi - Human Resources")
+#adds the info at the end of the file
