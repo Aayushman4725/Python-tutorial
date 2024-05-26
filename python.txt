@@ -544,3 +544,46 @@ employee_file.close()
 employee_files=open("employee.txt","a")
 employee_files.write("Tobi - Human Resources")
 #adds the info at the end of the file
+
+employee_files.write("\n kelly- Customer Service")
+#\n breaks the line
+
+employee_file.close()
+
+employee_files=open("employee.txt","w")
+#in write mode
+
+employee_files.write("Aayush - Customer Service")
+#in write mode it overwrites the file so the above data will only be #shown in the txt file
+
+
+employee_files=open("index.html","w")
+employee_files.write("<p>This is HTML<p>")
+#we can also open and write html file
+
+
+#modules and pip
+import <file_name> #accessing the modules
+
+#for eg there is a file called useful_tools previosly made in which #there are multiple useful function
+
+import useful_tools
+
+print(useful_tools.roll_dice(10))
+#roll_dice is a function in useful_tools file
+#the above file is stored in the same directory so it can be imported #using the above code
+
+# to install external modules we use pip which is a package manager
+pip install python-docx
+import docx
+
+pip uninstall python-docx #uninstall the module
+
+#to import a class from a file
+from <file_name> import <class_name>
+
+#for eg a file named Student has a class named Student
+
+from Student import Student
+
+
