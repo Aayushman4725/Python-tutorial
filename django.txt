@@ -1,0 +1,36 @@
+#Django
+
+Django is a framework of python used to built web applications
+
+#Setup a virtual environment as different project in django requires #different django version
+
+# to create virtual environment
+
+1. Create a new folder with required name
+2. Open the folder and right click and select "git bash here"
+3. enter pip freeze in the git bash
+4. In the latest versions of python the virtual environment are pre installed if you have a older version you can just type "pip intall virtualenv"
+5.To create virtual  environment type "python -m venv <environment_name(any name)>"
+6. To activate the virtual environment type "source <environment_name>/Scripts/activate>" (for mac replace Scripts with bin)
+7. type "pip freeze" again if the environment name is shown then your virtual environment is created.
+8. To deactive the virtual environment just type decactivate
+9. Now to install django type "pip install django".
+
+
+# To create a project
+
+1. Type django-admin startproject <folder_name> .  #the "." means to create the folder in the root
+2. To open code editor type "code ."
+3. After opening the code editor open the terminal and activate the virtual environment as mention above in point 6 of creating virtual environment. # if you are using powershell terminal dont type source i.e only type <environment_name>\Scripts\activate
+4. Now to start type "python manage.py runserver"
+
+#Below are the most used commands, frankly I dont understand these commands myself but after #diving deep into it more I will be explaining it in the future.
+
+5. To create of new app we type "python manage.py startapp <app_name>"
+6. To create a super user type "python manage.py createsuperuser"
+7. To change password type "python manage.py changepassword <your_user_name>
+8. To create tables type "python manage.py makemigrations".
+
+# we can see that manage.py is used in every commands.
+
+ 
