@@ -33,4 +33,81 @@ Django is a framework of python used to built web applications
 
 # we can see that manage.py is used in every commands.
 
- 
+
+#Default configuration in Django
+
+#In settings.py
+1. SECRET_KEY - it should be kept in a safe environment
+2. DEBUG - always set it to False in production server only set it true in development server
+3. ALLOWED_HOST - put the domain name of the website where you want to run the project
+4. INSTALLED_APPS - app is a package with django modules and wherever we create an app in django project we register it in INSTALLED_APPS
+5. MIDDLEWARE - it contains various important function
+6. ROOT_URLCONF - it contains <Folder_name>.urls which means in the folder named <Folder_name> there consist a file urls.py
+7. TEMPLATES - renders frontend templates
+8. WSGI_APPLICATIOIN - it tells django where the wsgi(web server gateway interface) application should run 
+9. DATABASES - contains the database used
+10. AUTH_PASSWORD_VALIDATORS - used to check users passwords strength 
+11. USE_I18N - to turn on internationalization set it to true
+12. STATIC_URL - all the cs, js files used are static files
+
+
+
+#How Django works
+
+It follows MVT(Model view template) design patterns
+Model interacts with the database
+Templates acts as a user interface (html,bootstrap)
+View acts as a bridge between model and template sending the data model fetched from database to the templates
+
+for example a user wants to see his/her first name and last name so he\she accesses the django application. Django application is accessed through urls which are kept in a seperate file called urls.py in the root folder of the django application. 
+
+url pattern: path('profile/',views.profile) - which means in view module there is a function called profile
+
+path is a inbuilt function the first profile is the end point
+
+when any request comes it checks if the url pattern is present in the urls.py file if the pattern is present the it activates the corresponding function.
+After the function starts working it sends the logic to the model with the help of view. 
+The model checks if the data is present in the database if it is present it sends it to the view
+The view then sends the data to the template where the user can see the data
+
+
+#URL and HTTP responses
+1. go to urls.py
+2. in urlpatterns 
+	urlpattern = [
+		path('admin/', admin.site.urls),
+		path('home/', views.home),    
+ # 'home/' is a endpoint the we will add in the url while requesting the application if it is left blank eg "path('', views.home)" then the contents of the function will be shown in the default link that is given in the terminal 
+	]
+#create a file called views.py and import this file in the urls.py by typing 
+"from . import views"  
+
+3. In views.py create a function which takes request as parameter and returns HttpResponse
+
+	eg: def home(request):
+		return HttpResponse('Hello world')
+# import HttpResponse by typing "from django.http import HttpResponse" at the start of the code
+
+now activate the virtual environment and run the server as mentioned previosly. A link should pop at the terminal containing a IP adderess open that link and modify the link by adding /home at the end of the link.
+
+#we can also use html tags in the HttpResponse eg: return HttpResponse("<h3>Hello world</h3>")
+
+
+#Implement Django template
+1. Create a folder called templates in the root folder(outside the application folder).
+2. In the template folder create a file called home.html or any other html file which we will later render in the views.py file
+3.From the views.py file copy the html code written previously which was <h3>Hello world</h3> and paste it in the home.html file
+4. Now remove the HttpResponse function and replace it with render and place the parameter as request and the html file (the html files should be inside a quotation) 	
+		eg: def home(request):
+			return render(request,'home.html')
+
+remove the HttpResponse import and replace it with "from django.shortcuts import render"
+Also remember to save the file
+
+5. Go to settings.py 
+6. In the file there is a list named TEMPLATES and inside the TEMPLATES there is a item called 'DIRS':[] Now inside the big brackets type 'templates' which is the name of the directory/folder eg: 'DIRS': ['templates'] and save the file
+
+
+#we can also use html boiler plate by typing ! in the home.html file and press "Tab"
+
+#Implementing bootstrap 
