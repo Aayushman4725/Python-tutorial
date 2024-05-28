@@ -111,3 +111,33 @@ Also remember to save the file
 #we can also use html boiler plate by typing ! in the home.html file and press "Tab"
 
 #Implementing bootstrap 
+Include content delivery network in the project (CDN)
+Go to the bootstrap website and copy the two CDN and paste it in the home.html just before ending the head tag.
+
+To check if the bootstrap is working or not we can just paste a bootstrap code in the body tag. The bootstrap codes can be found in the documentations in the bootstrap website.
+
+
+#Configure static files in django
+1. Create a folder named inside the project folder.
+2. Inside the static folder we put all the static files such as css images javascript and so on.
+3. Create a folder named css and images inside the static folder.
+4. Create a style.css file inside the css folder and enter some css code also add a image inside the images folder.
+5. In the home.html use link tag to add the style.css file just below the bootstrap link tag before closing head.
+6. Use img tag to insert the image giving its path.
+7. Now in the settings.py file scroll down until you find STATIC_URL below it type 
+STATIC_ROOT = BASE_DIR /'static' 
+also below it type 
+		
+		STATICFILES_DIRS= [
+			'project_folder/static' #this is the path to static folder
+		]
+8. Now in the home.html file before the html tag starts type
+{% load static %}
+
+9. Also in the link tag in the href attribute type {% static 'css/style.css' %}
+Eg: <link rel="stylesheet" href="{% static 'css/style.css %}">
+
+10. For img tag : <img src="{% static 'images/pic.png' %}" alt="" width="400">
+
+# STATICFILES_DIRS contains the folder from which the static files are fetched in the html code
+
