@@ -141,3 +141,105 @@ Eg: <link rel="stylesheet" href="{% static 'css/style.css %}">
 
 # STATICFILES_DIRS contains the folder from which the static files are fetched in the html code
 
+
+#Django App
+1. To create an app type "python manage.py startapp employees(or any app name)".
+# apps are created for performing a certain feature
+
+admin.py -- used to display models in django admin panel
+apps.py -- created to help the user to add any application level configuration to the app.
+models.py -- contains the essential fields and behaviors of data that are stored in the database(important file)
+tests.py -- used to run test in the project
+views.py -- create bussiness logic for specific app
+
+
+#Django admin panels
+To access the admin panel we go to the urls.py file. Inside the file there is urlpatterns list and inside it there is path for admin.
+
+Note: if you change something in the files of static folder the changes may not be applied to the browser even after reload it this is due to caching to fix this in the browser press "ctrl+shift+R"
+
+To open the admin panel go to the url of server in the browser and add /admin where you kept /home
+
+In the admin panel we will see the login forms.
+But we dont have the login credentials yet. To get the login credentials we create a super user.
+
+To create super user go to the code editor/IDE and in the terminal close the server (press ctrl+c). After closing the server type "python manage.py createsuperuser"
+
+After hitting Enter we can the terminal prompting us for Username you can choose any name you wish currently lets write "djangoadmin".
+
+Next enter your email address and password.
+
+Now your super user account will be created. Then start the server and again go to the admin panel and enter the login credentials.
+
+
+#Creating a model(Database)
+In the settings.py there is a DATABASES dictionary
+
+for database we need tables and field which we create in the models.py file which is created by default in the application folder that we created previously.
+
+In models.py file create a class with argument models.Model
+	eg class Employee(models.Model)
+		first_name = models.CharField(max_length=100)
+		last_name = models.CharField(max_length=100)
+		photo = models.ImageField(upload_to='images')
+		designation = models.CharField(max_length=100)
+		email_address = models.EmailField(max_length=100, unique=True)
+#we set unique to True for the email address to be unique for every users
+		
+		phone_number = models.CharField(max_length=12, blank=True) 
+#blank=True means that this field is optional and the other fields are mandatory.
+		
+		created_at = models.DataTimeField(auto_now_add=True)  
+#used to keep track of when this data was created. auto_now_add is good for one time use
+		
+		updated_at = models.DateTimeField(auto_now=True)
+ # used to keep track of when the data was updated
+
+
+#Migration
+Goto the settings.py and inside the INSTALLED_APPS list add 'employees' (or your app name)
+We do this step immediately after creating a new app.
+
+now go to terminal and install a module Pillow by typing "pip install Pillow"
+After installing Pillow  type "python manage.py makemigrations".
+The above code will take the models which we created previously to the migratiions folder and make a file named 0001_inital.py which is a migration file.
+"makemigrations" command reads the models.py file check for any updates in the file a creates a migration file with SQL commands
+
+Now to make the database table/execute the SQL commands in the database type "python manage.py migrate" in the terminal
+"migrate" command executes the SQL command which is created by "makemigrations" command
+
+Now in the application folder go to the admin.py file and register the model by typing
+"admin.site.register(Employee)". Before that import the Employee model in the file by typing 
+"from .models import Employee"
+Now in admin panel there should be a tab called Employee.
+Try adding a employee
+When we try to see the employee details the image will not show
+This is because we have not configured the media files.
+
+#Django Media Files
+When we added an image in the admin folder for the employee a folder called images should have been formed.
+Delete that image folder and create a new forder called media inside the root folder.
+Now go to the settings.py file and at the end of the file add the media configurations
+
+MEDIA_URL ='/media/'
+MEDIA_ROOT = BASE_DIR/ 'media'
+
+what the above configuration does is that when we add image in the images folder in the model through the admin panel it creates the images folder inside the media folder
+
+Now go the urls.py file.
+In there after the urlpatterns list type
+
+	urlpatterns=[
+		...
+	] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+Also import settings and static
+from django.conf import settings
+from django.conf.urls.static import static
+
+
+When we add a user in the table we see Employee(1) which is not a good way of representing a user so to fix that go to the models.py file.
+inside the Employee(or the class you have created) class add a function
+
+def __str__(self):
+	return self.first_name;
