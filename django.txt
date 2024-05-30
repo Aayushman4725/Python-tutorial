@@ -243,3 +243,139 @@ inside the Employee(or the class you have created) class add a function
 
 def __str__(self):
 	return self.first_name;
+
+#Fetch Data from the Database
+Now that we have saved our data in our database ,we want to show the data in the homepage.
+
+Go to the views.py file where we kept the home.html.
+in the home function we add a code : employees = Employee.objects.all()
+and print the employees variable : print(employees) #this will print the data in the terminal.
+
+For showing the data in the homepage we add a context dictionary:
+		
+		context= {
+		   'employees': employees, 		
+		} 
+also add the context in the render function
+
+The complete code:
+
+def home(request):
+	employees = Employee.object.all()
+	context{
+	   'employees':employees,
+	}
+	
+	return render(request,'home.html',context)
+
+Also we need to import the model so we type :
+ "from employees.models import Employee"
+at the start of the code
+
+Now in the home.html file inside the body tag add {{employees}} and run the server
+But as you can see the website it wont be that apealing as some syntax are also shown in the frontend.
+
+So instead of writing {{employees}} we use for loop:
+
+{% for i in employees %}
+	<h4>{{ i }}</h4>
+{% endfor %}
+
+the {% %} tag are templates tags 
+Inside these tag we can write code in python code or any other logic like if else conditions.
+The double curly braces {{}} are the template variables 
+They are used to print python variables in the html template.
+
+#Fetching the data inside the table
+Now that we have fetched our data in the home page. We need to show that data in a structured form.
+For we that we use table.
+We are going to put the data which we have fetched inside a table in the homepage.
+For that we need to make a table.
+We previously made a table using bootstrap. If you have deleted the table already you can just copy the code in the bootstrap website.
+
+First we remove the for loop we previously used in the home.html file.
+
+Now that you have added a table delete the rows until only 1 row remains excluding the heading rows.
+
+In the column i.e <th> tag change the names of the columns for eg
+<th scope="col">ID</th>
+<th scope="col">Full name</th> and so on.
+Just put the name of the data which we have stored in the database previously.
+
+now keep the <tr> tag inside a for loop (note: not the <tr> tag that contains the column name)
+
+for that:
+
+{% for emp in employee %}
+<tr>
+ <th scope="row">{{ emp.id }}</th>
+ #django will automatically give an to the data which we have created
+ <td scope="row">{{ emp.first_name }} {{empt.last_name}}</td>
+# the first_name and last_name are the variables that we created in the models.py file to make the database model
+ <td scope="row">{{ emp.designation }}</td>
+ <td scope="row">{{ emp.phone_number }}</td>
+</tr>
+{% endfor %}
+
+
+
+#Fetch Employee Detail View
+Now that we have fetched data from the database and kept the data inside a table, we have show the full information of the employee in the django webpage as we only added some of the data inside the table.
+
+The idea is that if we add the id number in the url of the website like 127.0.0.1:8000/employees/1
+then the information of the employee which corresponds with the id should show up.
+
+For that first lets go to the urls.py file in the mysite folder(or the name of the folder you created while starting up as admin at first)
+
+Now in the urls.py file there is a list called urlpatterns. In that list add a new path
+
+path('employees/', include('employees.urls')),
+
+dont forget to leave a comma(,) at the end.
+In the above code 'employees/' means the path that will be added in the url in the browser to go the specific page.
+
+include() is a function which forwards the request to the urls.py file(which we will have to create in the employees folder) which is located in the employees folder.
+also import include module:
+
+from django.urls import path, include (the path module will be there by default just add comma and include(,include)
+
+Now create a file called urls.py in the employees application/folder
+In that file input this code:
+
+from django.urls import path
+from . import views
+
+urlpattern =[
+	path('<int:empid>/',views.employee_detail),
+]
+
+The above code is similar to the urls.py in the project folder the only difference is the
+<int:empid> which is basically a integer variable named empid which is also the primary key that corresponds with the database.
+
+Now go to the views.py file  in the application folder and write this code:
+
+from django.http import Http404
+from django.shortcuts import render
+from employees.models import Employee
+
+def employee_detail(request,empid):  
+	try:
+		employees=Employee.object.get(empid=empid)
+		print(employees)
+	except:
+		raise Http404
+
+#In the above code the parameter empid is fetched when the user enters the url to see the employee details of a particular id. In the try block: a variable is created in which the employee details will be added if the given employee id is present in the database. Otherwise it will go in the except block which will throw an error a Not found error.
+
+When we run the above code we can see the results in the terminal which gives us the name of the employee.But, the above code is too long. We can shorten the code by using the following code:
+
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
+
+def employee_detail(request, empid)
+	employee=get_object_or_404(Employee,empid=empid)
+	return HttpResponse(employee)
+
+In the above code the get_object_or_404() function fetches the data if the id is present else it returns not found error.
+
+The HttpResponse() function shows the data in the webpage which is name of the employee
