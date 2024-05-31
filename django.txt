@@ -372,10 +372,70 @@ When we run the above code we can see the results in the terminal which gives us
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 
-def employee_detail(request, empid)
-	employee=get_object_or_404(Employee,empid=empid)
+def employee_detail(request, pk)
+	employee=get_object_or_404(Employee,pk=pk) #pk is the primary key
 	return HttpResponse(employee)
 
 In the above code the get_object_or_404() function fetches the data if the id is present else it returns not found error.
 
 The HttpResponse() function shows the data in the webpage which is name of the employee
+
+#Employee Detail Page
+Now that we have fetched the data from the database in another webpage other than the home page. We should make it look more attractive and insert the full detail of the employee.
+For that , remove the "return HttpResponse(employee)" code and write:
+
+return render(request,'employee_detail.html',context)
+
+As we have not created the context dictionary as we did previously lets make a context dictionary right above the "return statement"
+
+	context = {
+		'employee' = employee
+	}
+
+Note: the employee inside the quot('') is the key i.e the name which are going to use in the html file and the employeee without the quot is the value that we fetched using the 
+get_object_or_404() function.
+
+Also dont forget to import render
+
+Now we create the "employee_detail.html" file and copy and paste the same code from home.html
+After that we remove the table and intead of the table we add a card.
+For that simply search in bootstrap about card and various codes will show up. Just pick one of the code and copy and paste it. 
+Now a card will show up in the webpage.
+If you dont like the placement of the card just add 'mx-auto' in the class of the div tag.
+There should be a <p> tag inside the card div.
+Just remove the text inside the <p> tag and instead of that add
+
+	<p class="text-card m-0"> {{employee.first_name}}  {{employee.first_name}} </p>
+	<p class="text-card m-0"> {{employee.designation}}</p>
+	<p class="text-card m-0"> {{employee.email}}</p>
+	<p class="text-card m-0"> {{employee.phone_number}}</p>
+
+Now in the image tag add the src attribute as:
+	<img class="card-img-top" src= "{{employee.photo.url}} " alt="Employee photo">
+
+Now save the file and refresh the webpage the card will show up having all the details.
+
+Also add the a button inside the card division by adding:
+<a href="{% url 'home' %}" class="btn btn-primary">Back to home</a>
+
+In the href attribute we have {% url 'home' %} which means when we click this button the url for home.html will trigger.
+Now you may be thinking where did this 'home' come from? Actually we have to add this name inside our path in the urls.py file of the project folder. This is done by:
+
+path('', views.home.html, name='home')
+
+We just added name = 'home' in the already set up path
+
+Now when we click the back to home button we go to the home page
+
+Now that we know how to use the button , we can apply the same logic in the home page in the table
+i.e after clicking the name the details of the employee will show up.
+
+for that go to home.html file
+from there put the {{emp.first_name}} {{emp.last_name}} inside the <a> tag :
+
+<a href="{% url 'employee_detail' emp.id %}" style="text-decoration:none"> {{emp.first_name}} {{emp.last_name}}</a>
+
+the style attribute removes the underline and the blue text that comes using the anchor/<a> tag.
+Now same as before put the name 'employee_detail' inside the path but this time in urls.py file of the application folder.
+
+
